@@ -8,25 +8,62 @@ let opponent = {
   power: 15
 }
 
+// player attack
 const attack = () => {
   let attkbutton = document.getElementById('attkbutton');
+  let restbutton = document.getElementById('restbutton');
   let gameMessage = document.getElementById('game-message');
 
-  let playerAttack = Math.floor(Math.random() * player.power);
+  let playerAttack = determineAttack(player.power);
   opponent.health -= playerAttack;
   printToScreen();
-  attkbutton.disabled = true;
+
+  if (isGameOver(opponent.health)){
+    endGame("You won!");
+    return;
+  }
+
 
   gameMessage.innerText = "Opponent is about to attack!"
 
+// opponent attack
+
   setTimeout(() => {
-    let opponentAttack = Math.floor(Math.random() * opponent.power);
+    let opponentAttack = determineAttack(opponent.power);
     player.health -= opponentAttack;
-    console.log(opponentAttack);
-  }, 1000);
+    printToScreen();
 
-  console.log(playerAttack);
+    if (isGameOver(player.health)){
+      endGame("You lost");
+      return;
+    }
 
+
+  }, 250);
+
+}
+
+const endGame = (message) => {
+  document.getElementById('game-message').innerText = message;
+  document.getElementById('attkbutton').hidden = true;
+  document.getElementById('restbutton').hidden = false;
+}
+
+const determineAttack = (power) => {
+  return Math.floor(Math.random() * power);
+}
+
+const isGameOver = (health) => {
+  return health <= 0;
+}
+
+const restart = () => {
+  player.health = 100;
+  opponent.health = 100;
+  document.getElementById('game-message').innerText = "";
+  document.getElementById('attkbutton').hidden = false;
+  document.getElementById('restbutton').hidden = true;
+  printToScreen();
 }
 
 const printToScreen = () => {
