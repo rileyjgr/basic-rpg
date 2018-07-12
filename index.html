@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html>
-<!---BootStrap Documentation -->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!--My css -->
 <link rel="stylesheet" href="assets\css\style.css">
 <head>
-  <!-- Boot Strap Navbar -->
-  <div class="container">
-          <div class="navbar-header">
-            <p class="navbar-brand">Battle for the RPG</p>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="https://github.com/rileyjgr/">My Github</a></li>
-              <li><a href="https://rileyjgr.github.io/">My Webpage</a></li>
-            </ul>
-          </ul>
-        </div>
+  <div class="menu">
+    <ul>
+      <div class="heading">
+        <p>Basic Rpg</p>
       </div>
-    </head>
+
+      <li><a href="#">My Github</a></li>
+      <li><a href="#">My Website</a></li>
+    </ul>
+  </div>
+</head>
 
   <body background="assets\img\background.jpg">
-
+    <h3>Opponent's Health<span id="opponent-health"></span></h3>
+    <h3>Your Health<span id="player-health"></span></h3>
+    <button id="attkbutton" onclick="attack()">Swing!</button>
+    <script type="text/javascript" src="assets\js\game.js"></script>
+    <h3 id="game-message"></h3>
   </body>
 
   <footer class="footer">
