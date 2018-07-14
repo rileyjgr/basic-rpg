@@ -17,21 +17,39 @@
 </head>
 
   <body background="assets\img\background.jpg">
-    <h3>Opponent's Health <span id="opponent-health"></span></h3>
-    <!-- <img src ="assets\img\blood-hunter.png"> -->
+    <div class="container">
+      <div class="healthBars">
+      <h3>Opponent's Health <span id="opponent-health"></span></h3>
 
-    <h3>Your Health <span id="player-health"></span></h3>
-    <!-- <img src ="assets\img\hero.png"> -->
-    <br>
-    <br>
+      <!-- <img src ="assets\img\blood-hunter.png"> -->
+      <h3>Your Health <span id="player-health"></span></h3>
+      <!-- <img src ="assets\img\hero.png"> -->
+    </div>
 
-    <button id="attkbutton" onclick="attack()">Swing!</button>
-    <button id="restbutton" onclick="restart()">Restart game</button>
+    <div class="abilities">
+      <img src = "assets\img\basic-attack.gif">
+      <img src ="assets\img\heal.gif">
+      <img src = "assets\img\firespell.gif">
+
+      <br>
+
+      <button id="attkbutton" onclick="attack()">Basic Attack</button>
+      <button id="heal" onclick="heal()">Heal up</button>
+      <button id="fire" onclick="fireSpell()">Fire Spell</button>
+    </div>
+      <div class="gameButtons">
+        <button id="restbutton" onclick="restart()">Restart game</button>
+      </div>
+      <div class="gameLog">
+        <h3 id="game-message"></h3>
+      </div>
+      <div class="gameCounter">
+        <h3>Wins: <span id="win-Counter"></span></h3>
+        <h3>Loses: <span id="lose-Counter"></span></h3>
+        <h3>Game Number: <span id="game-num"></span></h3>
+      </div>
+    </div>
     <script type="text/javascript" src="assets\js\game.js"></script>
-    <h3 id="game-message"></h3>
-    <h3>Wins: <span id="win-Counter"></span></h3>
-    <h3>Loses: <span id="lose-Counter"></span></h3>
-    <h3>Game Number: <span id="game-num"></span></h3>
   </body>
 
   <footer class="footer">
