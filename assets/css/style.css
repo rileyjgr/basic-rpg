@@ -56,6 +56,5 @@ img {
   width: 100%;
   height: 40px;
   color: white;
-  opacity: 1; // Leave this as 1
-  background-color: rgba(0,153,0,0.6);
+  opacity: 1;
 }

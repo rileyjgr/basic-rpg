@@ -1,3 +1,5 @@
+// lul under 100 lines xD
+
 let player = {
   health: 100,
   power: 15
@@ -6,6 +8,15 @@ let player = {
 let opponent = {
   health: 100,
   power: 15
+}
+
+let score = {
+  wins: 0,
+  loses: 0
+}
+
+let currentGame = {
+  game: 0
 }
 
 // player attack
@@ -20,11 +31,13 @@ const attack = () => {
 
   if (isGameOver(opponent.health)){
     endGame("You won!");
+    score.wins++;
+    currentGame.game++;
     return;
   }
 
 
-  gameMessage.innerText = "Opponent is about to attack!"
+  gameMessage.innerText = "May RNGjesus be on your side!"
 
 // opponent attack
 
@@ -35,6 +48,8 @@ const attack = () => {
 
     if (isGameOver(player.health)){
       endGame("You lost");
+      score.loses++;
+      currentGame.game++;
       return;
     }
 
@@ -66,7 +81,14 @@ const restart = () => {
   printToScreen();
 }
 
+
 const printToScreen = () => {
   document.getElementById('opponent-health').innerText = opponent.health;
   document.getElementById('player-health').innerText = player.health;
+  document.getElementById('game-num').innerText = currentGame.game;
+  document.getElementById('win-Counter').innerText = score.wins;
+  document.getElementById('lose-Counter').innerText = score.loses;
 }
+
+console.log(score.loses);
+console.log(score.wins);
