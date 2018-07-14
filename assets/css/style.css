@@ -55,13 +55,23 @@ h3 {
   text-align: center;
 }
 
+.op {
+  width: 500px;
+  margin: 20px;
+}
+
+.you {
+   float: left;
+   width: 500px;
+   margin: 20px;
+}
+
 .healthBars {
   height: 150px;
   width: 100%;
   font-size: 20px;
   text-align: center;
   font-family: 'Lato', sans-serif;
-  background-color:	rgba(0,51,102, 0.5);
   position: relative;
 }
 
@@ -71,7 +81,6 @@ h3 {
   font-size: 20px;
   text-align: center;
   font-family: 'Lato', sans-serif;
-  background-color:	rgba(0,51,119, 0.5);
   position: relative;
 }
 
@@ -81,7 +90,6 @@ h3 {
   font-size: 20px;
   text-align: center;
   font-family: 'Lato', sans-serif;
-  background-color:	rgba(0,51,136, 0.5);
   position: relative;
 }
 
@@ -91,7 +99,6 @@ h3 {
   font-size: 20px;
   text-align: center;
   font-family: 'Lato', sans-serif;
-  background-color:	rgba(0,51,153, 0.5);
   position: relative;
 }
 
@@ -101,7 +108,6 @@ h3 {
   font-size: 20px;
   text-align: center;
   font-family: 'Lato', sans-serif;
-  background-color:	rgba(0,34,136, 0.5);
   position: relative;
 }
 
@@ -111,7 +117,7 @@ h3 {
   width: 100%;
   height: 40px;
   color: white;
-  background-color: black; 
+  background-color: black;
   opacity: 1;
 }
 

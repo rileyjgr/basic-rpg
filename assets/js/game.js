@@ -172,6 +172,10 @@ const restart = () => {
   printToScreen();
 }
 
+const restCounter = () => {
+  let resetButton = document.getElementById('reset-Count');
+  resetButton.onclick(score.wins = 0, score.loses = 0);
+}
 
 const printToScreen = () => {
   document.getElementById('opponent-health').innerText = opponent.health;

@@ -18,14 +18,16 @@
 
   <body background="assets\img\background.jpg">
     <div class="container">
-      <div class="healthBars">
-      <h3>Opponent's Health <span id="opponent-health"></span></h3>
-
-      <!-- <img src ="assets\img\blood-hunter.png"> -->
-      <h3>Your Health <span id="player-health"></span></h3>
-      <!-- <img src ="assets\img\hero.png"> -->
-    </div>
-
+      <!-- <div style="width: 1920px"> -->
+          <div class="op">
+          <img src ="assets\img\blood-hunter.png">
+          <h3>Opponent's Health <span id="opponent-health"></span></h3>
+        </div>
+        <div class="you">
+            <img src ="assets\img\hero.png">
+            <h3>Your Health <span id="player-health"></span></h3>
+        </div>
+      <!-- </div> -->
     <div class="abilities">
       <img src = "assets\img\basic-attack.gif">
       <img src ="assets\img\heal.gif">
@@ -37,9 +39,6 @@
       <button id="heal" onclick="heal()">Heal up</button>
       <button id="fire" onclick="fireSpell()">Fire Spell</button>
     </div>
-      <div class="gameButtons">
-        <button id="restbutton" onclick="restart()">Restart game</button>
-      </div>
       <div class="gameLog">
         <h3 id="game-message"></h3>
       </div>
@@ -48,6 +47,9 @@
         <h3>Loses: <span id="lose-Counter"></span></h3>
         <h3>Game Number: <span id="game-num"></span></h3>
       </div>
+      <div class="gameButtons">
+        <button id="restbutton" onclick="restart()">Restart game</button>
+        <button id="reset-Count" onclick="restCounter()">Reset Counter</button>
     </div>
     <script type="text/javascript" src="assets\js\game.js"></script>
   </body>
