@@ -5,7 +5,7 @@ let player = {
 }
 
 let opponent = {
-  health: 200,
+  health: 300,
   power: 20,
   crit: 5000
 }
@@ -36,35 +36,11 @@ const attack = () => {
   opponent.health -= playerAttack;
   printToScreen();
 
-  if (isGameOver(opponent.health)){
-    endGame("You won!");
-    disableAttacks();
-    score.wins++;
-    currentGame.game++;
-    return;
-  }
-
+  setOver();
   // I wanna change this to display damage done.
 
   gameMessage.innerText = "May RNGjesus be on your side!"
-
-// opponent attack
-
-  setTimeout(() => {
-    let opponentAttack = determineAttack(opponent.power);
-    player.health -= opponentAttack;
-    printToScreen();
-
-    if (isGameOver(player.health)){
-      endGame("You lost");
-      document.getElementById('attkbutton').disable = true;
-      score.loses++;
-      currentGame.game++;
-      return;
-    }
-
-
-  }, 250);
+  bufferPeriod();
 
 }
 
@@ -75,30 +51,10 @@ const fireSpell = () => {
   opponent.health -= boom;
   printToScreen();
 
-
-  if (isGameOver(opponent.health)){
-    endGame("You won!");
-    score.wins++;
-    currentGame.game++;
-    return;
-  }
-
   //Not sure why but this isnt working, the text below
   //gameMessage.innerText = "Wow you used a fireball, try getting some skill."
-
-  setTimeout(() => {
-    let opponentAttack = determineAttack(opponent.power);
-    player.health -= opponentAttack;
-    printToScreen();
-    if (isGameOver(player.health)){
-      endGame("You lost");
-      score.loses++;
-      currentGame.game++;
-      return;
-    }
-
-
-  }, 250);
+  setOver();
+  bufferPeriod();
 
 }
 
@@ -106,31 +62,17 @@ const heal = () => {
   let healSpell = document.getElementById('heal');
   let giveMeHp = hpPot.heal;
   player.health += giveMeHp;
-  printToScreen();
-
-  setTimeout(() => {
-    let opponentAttack = determineAttack(opponent.power);
-    player.health -= opponentAttack;
-    printToScreen();
-
-    if (isGameOver(player.health)){
-      endGame("You lost");
-      score.loses++;
-      currentGame.game++;
-      return;
-    }
-
-
-  }, 250);
+  printToScreen()
+  bufferPeriod();
 
 }
 
 const endGame = (message) => {
   document.getElementById('game-message').innerText = message;
   document.getElementById('restbutton').hidden = false;
-  document.getElementById("attkbutton").hidden = true;
-  document.getElementById("heal").hidden = true;
-  document.getElementById("fire").hidden = true;
+  document.getElementById("attkbutton").disabled = true;
+  document.getElementById("heal").disabled = true;
+  document.getElementById("fire").disabled = true;
 }
 
 const determineAttack = (power) => {
@@ -138,7 +80,7 @@ const determineAttack = (power) => {
 }
 
 // I want to get this working
-const player1shot = (crit) => {
+const player1shot = () => {
   let specialNumber = 1;
   let randomNum = Math.floor(Math.random() * 100);
   if (randomNum === specialNumber) {
@@ -150,6 +92,7 @@ const player1shot = (crit) => {
 const isGameOver = (health) => {
   return health <= 0;
 }
+
 //Would of liked to get these functions working but couldnt figure it out
 //disable the buttons not sure why this isnt working
 // const disableAttacks = (health) => {
@@ -170,19 +113,27 @@ const isGameOver = (health) => {
 // restarts the game
 const restart = () => {
   player.health = 100;
-  opponent.health = 300;
-  document.getElementById("attkbutton").hidden = false;
-  document.getElementById("heal").hidden = false;
-  document.getElementById("fire").hidden = false;
+
+  if (score.wins >= 1) {
+    opponent.health = 300 + (score.wins * 100);
+  }
+
+  if (score.loses > score.wins ) {
+    opponent.health = 300 - (score.loses + 100);
+  }
+
+  document.getElementById("attkbutton").disabled = false;
+  document.getElementById("heal").disabled = false;
+  document.getElementById("fire").disabled = false;
   document.getElementById('game-message').innerText = "Swing to start the next game!";
   printToScreen();
 }
 
 const restCounter = () => {
   let resetButton = document.getElementById('reset-Count');
-  document.getElementById("attkbutton").hidden = false;
-  document.getElementById("heal").hidden = false;
-  document.getElementById("fire").hidden = false;
+  document.getElementById("attkbutton").disabled = false;
+  document.getElementById("heal").disabled = false;
+  document.getElementById("fire").disabled = false;
   player.health = 100;
   opponent.health = 300;
   currentGame.game = 0;
@@ -197,4 +148,30 @@ const printToScreen = () => {
   document.getElementById('game-num').innerText = currentGame.game;
   document.getElementById('win-Counter').innerText = score.wins;
   document.getElementById('lose-Counter').innerText = score.loses;
+}
+
+const bufferPeriod = () => {
+  setTimeout(() => {
+    let opponentAttack = determineAttack(opponent.power);
+    player.health -= opponentAttack;
+    printToScreen();
+
+    if (isGameOver(player.health)){
+      endGame("You lost");
+      document.getElementById('attkbutton').disable = true;
+      score.loses++;
+      currentGame.game++;
+      return;
+    }
+
+  }, 250);
+}
+
+const setOver = () => {
+  if (isGameOver(opponent.health)){
+    endGame("You won!");
+    score.wins++;
+    currentGame.game++;
+    return;
+  }
 }
