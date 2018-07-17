@@ -20,11 +20,11 @@
     <div class="container">
       <!-- <div style="width: 1920px"> -->
           <div class="op">
-          <img src ="assets\img\blood-hunter.png">
+          <img src ="assets\img\op.gif">
           <h3>Opponent's Health <span id="opponent-health"></span></h3>
         </div>
         <div class="you">
-            <img src ="assets\img\hero.png">
+            <img src ="assets\img\you.gif">
             <h3>Your Health <span id="player-health"></span></h3>
         </div>
       <!-- </div> -->
@@ -35,12 +35,13 @@
 
       <br>
 
-      <button id="attkbutton" onclick="attack()">Basic Attack</button>
-      <button id="heal" onclick="heal()">Heal up</button>
-      <button id="fire" onclick="fireSpell()">Fire Spell</button>
+      <button id="attkbutton" onclick="attack()">Jump</button>
+      <button id="heal" onclick="heal()">Shrooms</button>
+      <button id="fire" onclick="fireSpell()">Fire Ball</button>
     </div>
       <div class="gameLog">
-        <h3 id="game-message"></h3>
+        <h3 id="game-message">Use an attack to begin the fight. Your Opponent will get stronger on the more games you win. And weaker on the games you lose. Good Luck!</h3>
+        <h3 id="opp-damage"></h3>
       </div>
       <div class="gameCounter">
         <h3>Wins: <span id="win-Counter"></span></h3>
@@ -53,12 +54,4 @@
     </div>
     <script type="text/javascript" src="assets\js\game.js"></script>
   </body>
-
-  <footer class="footer">
-    <div class="container">
-      <span class="text-muted">Created by <a href="https://github.com/rileyjgr/">Riley Griffin</a></span>
-    </div>
-
-  </footer>
-
 </html>

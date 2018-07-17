@@ -53,11 +53,13 @@ h3 {
 
 .container {
   text-align: center;
+  position: fixed;
 }
 
 .op {
   width: 500px;
   margin: 20px;
+  top: 0;
 }
 
 .you {
@@ -94,12 +96,12 @@ h3 {
 }
 
 .gameLog {
-  height: 30px;
+  height: 100px;
   width: 100%;
   font-size: 20px;
-  text-align: center;
+  text-align: right;
   font-family: 'Lato', sans-serif;
-  position: relative;
+  top: 0;
 }
 
 .gameCounter {

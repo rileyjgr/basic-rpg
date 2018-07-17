@@ -39,7 +39,7 @@ const attack = () => {
   setOver();
   // I wanna change this to display damage done.
 
-  gameMessage.innerText = "May RNGjesus be on your side!"
+  document.getElementById('game-message').innerText = "You jumped on their head and did: " + playerAttack + " Damage";
   bufferPeriod();
 
 }
@@ -50,6 +50,8 @@ const fireSpell = () => {
   let boom = determineAttack(fire.power);
   opponent.health -= boom;
   printToScreen();
+
+  document.getElementById('game-message').innerText = "Wow you used a fireball and did: " + boom + " Damage";
 
   //Not sure why but this isnt working, the text below
   //gameMessage.innerText = "Wow you used a fireball, try getting some skill."
@@ -62,6 +64,7 @@ const heal = () => {
   let healSpell = document.getElementById('heal');
   let giveMeHp = hpPot.heal;
   player.health += giveMeHp;
+  document.getElementById('game-message').innerText = "You ate a shroom and gained  " + giveMeHp;
   printToScreen()
   bufferPeriod();
 
@@ -119,13 +122,14 @@ const restart = () => {
   }
 
   if (score.loses > score.wins ) {
-    opponent.health = 300 - (score.loses + 100);
+    opponent.health = 300 - (100 / score.loses);
   }
 
   document.getElementById("attkbutton").disabled = false;
   document.getElementById("heal").disabled = false;
   document.getElementById("fire").disabled = false;
-  document.getElementById('game-message').innerText = "Swing to start the next game!";
+  document.getElementById('game-message').innerText = "Use an attack to begin the next game";
+  document.getElementById('opp-damage').innerText = "";
   printToScreen();
 }
 
@@ -150,11 +154,14 @@ const printToScreen = () => {
   document.getElementById('lose-Counter').innerText = score.loses;
 }
 
+
 const bufferPeriod = () => {
   setTimeout(() => {
     let opponentAttack = determineAttack(opponent.power);
     player.health -= opponentAttack;
     printToScreen();
+
+    document.getElementById('opp-damage').innerText = "Your Opponent hit you for " + opponentAttack + " Damage";
 
     if (isGameOver(player.health)){
       endGame("You lost");
