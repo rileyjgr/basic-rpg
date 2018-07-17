@@ -65,7 +65,7 @@ const heal = () => {
   let giveMeHp = hpPot.heal;
   player.health += giveMeHp;
   document.getElementById('game-message').innerText = "You ate a shroom and gained  " + giveMeHp;
-  printToScreen()
+  printToScreen();
   bufferPeriod();
 
 }
