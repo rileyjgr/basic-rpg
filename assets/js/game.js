@@ -1,4 +1,9 @@
 // Js for the game
+// stuff to add
+// 1. Health bars
+// 2. get crit working
+// 3. reset counter resets to the original image
+//
 let player = {
   health: 100,
   power: 15,
