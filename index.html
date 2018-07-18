@@ -47,6 +47,7 @@
       <div class="gameLog">
         <h3 id="game-message">Use an attack to begin the fight. There are five levels. See if you can make it to the final opponent</h3>
         <h3 id="opp-damage"></h3>
+        <h3 id="livesLeft"></h3>
       </div>
     <center>
       <div class="gameCounter">
@@ -57,6 +58,7 @@
     </center>
       <div class="gameButtons">
         <button id="restbutton" onclick="restart()">Next Level</button>
+        <button id="retryLevel" onclick="reTry()" disabled="true">Try Again</button>
         <button id="reset-Count" onclick="restCounter()">Restart Game</button>
     </div>
     <script type="text/javascript" src="assets\js\game.js"></script>

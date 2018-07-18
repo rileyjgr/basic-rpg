@@ -3,7 +3,7 @@
 // 1. Health bars
 // 2. get crit working
 // 3. reset counter resets to the original image
-//
+
 let player = {
   health: 100,
   power: 15,
@@ -40,6 +40,7 @@ let hpPot = {
 //   }
 // }
 // startGame();
+
 
 // player attack
 const attack = () => {
@@ -110,25 +111,15 @@ const isGameOver = (health) => {
   return health <= 0;
 }
 
-//Would of liked to get these functions working but couldnt figure it out
-//disable the buttons not sure why this isnt working
-// const disableAttacks = (health) => {
-//      document.getElementById("attkbutton").hidden = true;
-//      document.getElementById("heal").hidden = true;
-//      document.getElementById("fire").hidden = true;
-//      return;
-// }
-// const enableAttacks = (health) => {
-//      document.getElementById("attkbutton").disablede = false;
-//      document.getElementById("heal").disabled = false;
-//      document.getElementById("fire").disabled = false;
-//      return;
-// }
-
-
+const outOfLives = (lives) => {
+  return lives <= 0;
+}
 
 // restarts the game
 const restart = () => {
+  player.health = 100;
+  // only if they fail the first level
+  opponent.health = 300;
 
   if (score.wins >= 1) {
     opponent.health = 300 + (score.wins * 100);
@@ -181,38 +172,48 @@ const restart = () => {
   printToScreen();
 }
 
+// this works but its lazy
 const restCounter = () => {
   let resetButton = document.getElementById('reset-Count');
-  document.getElementById("attkbutton").disabled = false;
-  document.getElementById("heal").disabled = false;
-  document.getElementById("fire").disabled = false;
-  player.health = 100;
-  opponent.health = 300;
-  opponent.power = 20;
-  currentGame.game = 0;
-  score.wins = 0;
-  score.loses = 0;
+  location.reload();
 
-//restart game image, I want this cleaner. but its not working
-  if (score.wins === 1) {
-    document.getElementById("img2").src = "img1";
-    document.getElementById("img1").hidden = false;
-    document.getElementById("img2").hidden = true;
-  } if (score.wins === 2) {
-    document.getElementById("img3").src = "img1";
-    document.getElementById("img1").hidden = false;
-    document.getElementById("img3").hidden = true;
-  } if (score.wins === 3) {
-    document.getElementById("img4").src = "img1";
-    document.getElementById("img1").hidden = false;
-    document.getElementById("img4").hidden = true;
-  } if (score.wins >= 4) {
-    document.getElementById("img5").src = "img1";
-    document.getElementById("img1").hidden = false;
-    document.getElementById("img5").hidden = true;
-  }
-
-  printToScreen();
+  //want to implement this below.
+//   document.getElementById("attkbutton").disabled = false;
+//   document.getElementById("heal").disabled = false;
+//   document.getElementById("fire").disabled = false;
+//   player.health = 100;
+//   opponent.health = 300;
+//   opponent.power = 20;
+//   currentGame.game = 0;
+//   score.wins = 0;
+//   score.loses = 0;
+//
+// //restart game image, I want this cleaner. but its not working
+//   if (score.wins === 1) {
+//     document.getElementById("img2").src = "img1";
+//     document.getElementById("img1").hidden = false;
+//     document.getElementById("img2").hidden = true;
+//   }
+//
+//   if (score.wins === 2) {
+//     document.getElementById("img3").src = "img1";
+//     document.getElementById("img1").hidden = false;
+//     document.getElementById("img3").hidden = true;
+//   }
+//
+//   if (score.wins === 3) {
+//     document.getElementById("img4").src = "img1";
+//     document.getElementById("img1").hidden = false;
+//     document.getElementById("img4").hidden = true;
+//   }
+//
+//   if (score.wins >= 4) {
+//     document.getElementById("img5").src = "img1";
+//     document.getElementById("img1").hidden = false;
+//     document.getElementById("img5").hidden = true;
+//   }
+//
+//   printToScreen();
 
 }
 
@@ -224,8 +225,16 @@ const printToScreen = () => {
   document.getElementById('lose-Counter').innerText = score.loses;
 }
 
+let reTry =() => {
+  let tryAgain = document.getElementById('retryLevel');
+  console.log(player.lives)
+  restart();
+}
 
 const bufferPeriod = () => {
+
+
+
   setTimeout(() => {
     let opponentAttack = determineAttack(opponent.power);
     player.health -= opponentAttack;
@@ -235,13 +244,28 @@ const bufferPeriod = () => {
 
     if (isGameOver(player.health)){
       endGame("You lost");
-      document.getElementById('attkbutton').disable = true;
       score.loses++;
+      player.lives--;
       currentGame.game++;
-      return;
+      document.getElementById('retryLevel').disabled = false;
+      document.getElementById('restbutton').disabled = true;
+      document.getElementById('livesLeft').innerText = "You have " + player.lives + " lives left";
+    }
+
+    // this calls the function above to check if there are less than or equal to 0 lives remaining for the player. If less than 0 disable all buttons besides restart game
+    // But this isnt working
+    // debugger;
+    if (outOfLives(player.lives)) {
+
+      document.getElementById('game-message').innerText = "You are out of lives. You lost. Restart the game.";
+      document.getElementById('retryLevel').disabled = true;
+      document.getElementById('restbutton').disabled = true;
     }
 
   }, 250);
+
+
+
 }
 
 const setOver = () => {
@@ -249,6 +273,13 @@ const setOver = () => {
     endGame("You won!");
     score.wins++;
     currentGame.game++;
+    document.getElementById('restbutton').disabled = false;
+    document.getElementById('retryLevel').disabled = true;
     return;
   }
 }
+
+// this is a life counter to end the game whent the player runs out of lives
+// const youLost = (player.lives) => {
+//   return player.lives <= 0;
+// }
