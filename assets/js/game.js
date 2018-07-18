@@ -1,7 +1,8 @@
 // Js for the game
 let player = {
   health: 100,
-  power: 15
+  power: 15,
+  lives: 5
 }
 
 let opponent = {
@@ -26,6 +27,14 @@ let fire = {
 let hpPot = {
   heal: 30
 }
+
+// const startGame = () => {
+//   window.load = function(){
+//     player.health = 100;
+//     opponent.health = 300;
+//   }
+// }
+// startGame();
 
 // player attack
 const attack = () => {
@@ -115,20 +124,54 @@ const isGameOver = (health) => {
 
 // restarts the game
 const restart = () => {
-  player.health = 100;
 
   if (score.wins >= 1) {
     opponent.health = 300 + (score.wins * 100);
+    opponent.power = 20 * (score.wins * 1)
+    ;
   }
 
-  if (score.loses > score.wins ) {
-    opponent.health = 300 - (100 / score.loses);
+
+  if(score.wins === 1) {
+    document.getElementById("img1").src = "img2";
+    document.getElementById("img2").hidden = false;
+    document.getElementById("img1").hidden = true;
+    document.getElementById('game-message').innerText = "Welcome to Level 2!";
   }
+
+  if(score.wins === 2) {
+    document.getElementById("img2").src = "img3";
+    document.getElementById("img3").hidden = false;
+    document.getElementById("img2").hidden = true;
+    document.getElementById('game-message').innerText = "Welcome to Level 3!";
+  }
+
+  if(score.wins === 3) {
+    document.getElementById("img3").src = "img4";
+    document.getElementById("img4").hidden = false;
+    document.getElementById("img3").hidden = true;
+    document.getElementById('game-message').innerText = "Welcome to Level 4!";
+  }
+
+  if(score.wins === 4) {
+    document.getElementById("img4").src = "img5";
+    document.getElementById("img5").hidden = false;
+    document.getElementById("img4").hidden = true;
+    document.getElementById('game-message').innerText = "Welcome to Level 5! This is your final Opponent";
+  }
+
+  if(score.wins === 5) {
+    document.getElementById("attkbutton").disabled = true;
+    document.getElementById("heal").disabled = true;
+    document.getElementById("fire").disabled = true;
+    document.getElementById("restbutton").disabled = true;
+    document.getElementById('game-message').innerText = "You beat the game! Nice Job!";
+  }
+
 
   document.getElementById("attkbutton").disabled = false;
   document.getElementById("heal").disabled = false;
   document.getElementById("fire").disabled = false;
-  document.getElementById('game-message').innerText = "Use an attack to begin the next game";
   document.getElementById('opp-damage').innerText = "";
   printToScreen();
 }
@@ -140,10 +183,32 @@ const restCounter = () => {
   document.getElementById("fire").disabled = false;
   player.health = 100;
   opponent.health = 300;
+  opponent.power = 20;
   currentGame.game = 0;
   score.wins = 0;
   score.loses = 0;
+
+//restart game image, I want this cleaner. but its not working
+  if (score.wins === 1) {
+    document.getElementById("img2").src = "img1";
+    document.getElementById("img1").hidden = false;
+    document.getElementById("img2").hidden = true;
+  } if (score.wins === 2) {
+    document.getElementById("img3").src = "img1";
+    document.getElementById("img1").hidden = false;
+    document.getElementById("img3").hidden = true;
+  } if (score.wins === 3) {
+    document.getElementById("img4").src = "img1";
+    document.getElementById("img1").hidden = false;
+    document.getElementById("img4").hidden = true;
+  } if (score.wins >= 4) {
+    document.getElementById("img5").src = "img1";
+    document.getElementById("img1").hidden = false;
+    document.getElementById("img5").hidden = true;
+  }
+
   printToScreen();
+
 }
 
 const printToScreen = () => {

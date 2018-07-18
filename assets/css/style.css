@@ -51,6 +51,16 @@ h3 {
   color: white;
 }
 
+button {
+  border-radius: 12px;
+}
+
+.abilitiesButton{
+  margin: 10px;
+  height: 100px;
+  position: relative;
+}
+
 .container {
   text-align: center;
 }
@@ -58,7 +68,6 @@ h3 {
 .op {
   width: 500px;
   margin: 20px;
-  top: 0;
 }
 
 .you {
@@ -77,12 +86,11 @@ h3 {
 }
 
 .abilities {
-  height: 150px;
+  height: 100px;
   width: 100%;
   font-size: 20px;
   text-align: center;
-  font-family: 'Lato', sans-serif;
-  position: relative;
+  font-family: 'Lato', sans-serif;;
 }
 
 .gameButtons {
@@ -98,7 +106,7 @@ h3 {
   height: 100px;
   width: 100%;
   font-size: 20px;
-  text-align: right;
+  text-align: center;
   font-family: 'Lato', sans-serif;
   top: 0;
 }
@@ -107,7 +115,6 @@ h3 {
   height: 150px;
   width: 100%;
   font-size: 20px;
-  text-align: right;
   font-family: 'Lato', sans-serif;
   position: relative;
 }
