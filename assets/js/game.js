@@ -2,7 +2,6 @@
 // stuff to add
 // 1. Health bars
 // 2. get crit working
-// 3. reset counter resets to the original image
 
 let player = {
   health: 100,
@@ -127,43 +126,7 @@ const restart = () => {
     ;
   }
 
-
-  if(score.wins === 1) {
-    document.getElementById("img1").src = "img2";
-    document.getElementById("img2").hidden = false;
-    document.getElementById("img1").hidden = true;
-    document.getElementById('game-message').innerText = "Welcome to Level 2!";
-  }
-
-  if(score.wins === 2) {
-    document.getElementById("img2").src = "img3";
-    document.getElementById("img3").hidden = false;
-    document.getElementById("img2").hidden = true;
-    document.getElementById('game-message').innerText = "Welcome to Level 3!";
-  }
-
-  if(score.wins === 3) {
-    document.getElementById("img3").src = "img4";
-    document.getElementById("img4").hidden = false;
-    document.getElementById("img3").hidden = true;
-    document.getElementById('game-message').innerText = "Welcome to Level 4!";
-  }
-
-  if(score.wins === 4) {
-    document.getElementById("img4").src = "img5";
-    document.getElementById("img5").hidden = false;
-    document.getElementById("img4").hidden = true;
-    document.getElementById('game-message').innerText = "Welcome to Level 5! This is your final Opponent";
-  }
-
-  if(score.wins === 5) {
-    document.getElementById("attkbutton").disabled = true;
-    document.getElementById("heal").disabled = true;
-    document.getElementById("fire").disabled = true;
-    document.getElementById("restbutton").disabled = true;
-    document.getElementById('game-message').innerText = "You beat the game! Nice Job!";
-  }
-
+  nextLevel();
 
   document.getElementById("attkbutton").disabled = false;
   document.getElementById("heal").disabled = false;
@@ -176,45 +139,6 @@ const restart = () => {
 const restCounter = () => {
   let resetButton = document.getElementById('reset-Count');
   location.reload();
-
-  //want to implement this below.
-//   document.getElementById("attkbutton").disabled = false;
-//   document.getElementById("heal").disabled = false;
-//   document.getElementById("fire").disabled = false;
-//   player.health = 100;
-//   opponent.health = 300;
-//   opponent.power = 20;
-//   currentGame.game = 0;
-//   score.wins = 0;
-//   score.loses = 0;
-//
-// //restart game image, I want this cleaner. but its not working
-//   if (score.wins === 1) {
-//     document.getElementById("img2").src = "img1";
-//     document.getElementById("img1").hidden = false;
-//     document.getElementById("img2").hidden = true;
-//   }
-//
-//   if (score.wins === 2) {
-//     document.getElementById("img3").src = "img1";
-//     document.getElementById("img1").hidden = false;
-//     document.getElementById("img3").hidden = true;
-//   }
-//
-//   if (score.wins === 3) {
-//     document.getElementById("img4").src = "img1";
-//     document.getElementById("img1").hidden = false;
-//     document.getElementById("img4").hidden = true;
-//   }
-//
-//   if (score.wins >= 4) {
-//     document.getElementById("img5").src = "img1";
-//     document.getElementById("img1").hidden = false;
-//     document.getElementById("img5").hidden = true;
-//   }
-//
-//   printToScreen();
-
 }
 
 const printToScreen = () => {
@@ -263,9 +187,6 @@ const bufferPeriod = () => {
     }
 
   }, 250);
-
-
-
 }
 
 const setOver = () => {
@@ -279,6 +200,44 @@ const setOver = () => {
   }
 }
 
+const nextLevel = () => {
+  if(score.wins === 1) {
+    document.getElementById("img1").src = "img2";
+    document.getElementById("img2").hidden = false;
+    document.getElementById("img1").hidden = true;
+    document.getElementById('game-message').innerText = "Welcome to Level 2!";
+  }
+
+  if(score.wins === 2) {
+    document.getElementById("img2").src = "img3";
+    document.getElementById("img3").hidden = false;
+    document.getElementById("img2").hidden = true;
+    document.getElementById('game-message').innerText = "Welcome to Level 3!";
+  }
+
+  if(score.wins === 3) {
+    document.getElementById("img3").src = "img4";
+    document.getElementById("img4").hidden = false;
+    document.getElementById("img3").hidden = true;
+    document.getElementById('game-message').innerText = "Welcome to Level 4!";
+  }
+
+  if(score.wins === 4) {
+    document.getElementById("img4").src = "img5";
+    document.getElementById("img5").hidden = false;
+    document.getElementById("img4").hidden = true;
+    document.getElementById('game-message').innerText = "Welcome to Level 5! This is your final Opponent";
+  }
+
+  if(score.wins === 5) {
+    document.getElementById("attkbutton").disabled = true;
+    document.getElementById("heal").disabled = true;
+    document.getElementById("fire").disabled = true;
+    document.getElementById("restbutton").disabled = true;
+    document.getElementById('game-message').innerText = "You beat the game! Nice Job!";
+  }
+
+}
 // this is a life counter to end the game whent the player runs out of lives
 // const youLost = (player.lives) => {
 //   return player.lives <= 0;
