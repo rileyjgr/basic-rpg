@@ -12,7 +12,7 @@ let player = {
 let opponent = {
   health: 300,
   power: 20,
-  crit: 5000
+  crit: 5000000000000000000000000
 }
 
 let score = {
@@ -84,14 +84,14 @@ const determineAttack = (power) => {
 }
 
 // I want to get this working
-const player1shot = () => {
-  let specialNumber = 1;
-  let randomNum = Math.floor(Math.random() * 100);
-  if (randomNum === specialNumber) {
-    return opponentAttack = determineAttack(opponent.crit);
-    gameMessage.innerText = "Wow you got hit with a crit!"
-  }
-}
+// const player1shot = () => {
+//   let randomNum = Math.floor(Math.random() * 2);
+//   if (randomNum === 1) {
+//     opponentAttack = determineAttack(opponent.crit);
+//   } else {
+//     let opponentAttack = determineAttack(opponent.power);
+//   }
+// }
 
 const isGameOver = (health) => {
   return health <= 0;
@@ -109,8 +109,7 @@ const restart = () => {
 
   if (score.wins >= 1) {
     opponent.health = 300 + (score.wins * 100);
-    opponent.power = 20 * (score.wins * 1)
-    ;
+    opponent.power = 20 * (score.wins * 1);
   }
 
   nextLevel();
@@ -134,6 +133,7 @@ const printToScreen = () => {
   document.getElementById('game-num').innerText = currentGame.game;
   document.getElementById('win-Counter').innerText = score.wins;
   document.getElementById('lose-Counter').innerText = score.loses;
+  document.getElementById('live-Counter').innerText = player.lives;
 }
 
 let reTry =() => {
@@ -144,11 +144,19 @@ let reTry =() => {
 
 const bufferPeriod = () => {
   setTimeout(() => {
-    let opponentAttack = determineAttack(opponent.power);
-    player.health -= opponentAttack;
-    printToScreen();
+    // let opponentAttack = determineAttack(opponent.power);
 
-    document.getElementById('opp-damage').innerText = "Your Opponent hit you for " + opponentAttack + " Damage";
+    printToScreen();
+    let randomNum = Math.floor(Math.random() * 50);
+    if (randomNum === 1) {
+          let opponentAttack = determineAttack(opponent.crit);
+          player.health -= opponentAttack;
+          document.getElementById('opp-damage').innerText = "You got critted for " + opponentAttack + ". You died so fast you missed what happened. Try again";
+    } else {
+        let opponentAttack = determineAttack(opponent.power);
+        player.health -= opponentAttack;
+        document.getElementById('opp-damage').innerText = "Your Opponent hit you for " + opponentAttack + " Damage";
+    }
 
     if (isGameOver(player.health)){
       endGame("You lost");
