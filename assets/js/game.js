@@ -32,14 +32,6 @@ let hpPot = {
   heal: 30
 }
 
-// const startGame = () => {
-//   window.load = function(){
-//     player.health = 100;
-//     opponent.health = 300;
-//   }
-// }
-// startGame();
-
 
 // player attack
 const attack = () => {
@@ -51,7 +43,6 @@ const attack = () => {
   printToScreen();
 
   setOver();
-  // I wanna change this to display damage done.
 
   document.getElementById('game-message').innerText = "You jumped on their head and did: " + playerAttack + " Damage";
   bufferPeriod();
@@ -66,9 +57,6 @@ const fireSpell = () => {
   printToScreen();
 
   document.getElementById('game-message').innerText = "Wow you used a fireball and did: " + boom + " Damage";
-
-  //Not sure why but this isnt working, the text below
-  //gameMessage.innerText = "Wow you used a fireball, try getting some skill."
   setOver();
   bufferPeriod();
 
@@ -81,7 +69,6 @@ const heal = () => {
   document.getElementById('game-message').innerText = "You ate a shroom and gained  " + giveMeHp + " health";
   printToScreen();
   bufferPeriod();
-
 }
 
 const endGame = (message) => {
@@ -156,9 +143,6 @@ let reTry =() => {
 }
 
 const bufferPeriod = () => {
-
-
-
   setTimeout(() => {
     let opponentAttack = determineAttack(opponent.power);
     player.health -= opponentAttack;
@@ -238,7 +222,3 @@ const nextLevel = () => {
   }
 
 }
-// this is a life counter to end the game whent the player runs out of lives
-// const youLost = (player.lives) => {
-//   return player.lives <= 0;
-// }
